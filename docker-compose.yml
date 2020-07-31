@@ -1,0 +1,20 @@
+version: '3.7'
+
+services: 
+    webserver:
+        image: nginx:stable
+        container_name: webserver9
+        ports: 
+            - "8080:80"
+        volumes: 
+            - ./code:/code
+            - ./nginx/conf.d:/etc/nginx/conf.d
+        links: 
+            - php
+              
+    php:
+        image: prems4everyone/php
+        container_name: php9
+        volumes: 
+            - ./code:/code
+            #- ./php/:/usr/local/etc/php
